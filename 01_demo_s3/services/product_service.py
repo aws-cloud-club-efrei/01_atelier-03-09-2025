@@ -31,6 +31,16 @@ PRODUCTS = [
         "category": "Lifestyle",
         "colors": ["Blanc/Gris", "Noir/Blanc", "Rose/Blanc"],
         "sizes": ["36", "37", "38", "39", "40", "41", "42", "43", "44"]
+    },
+    {
+        "id": 4, 
+        "name": "Nike Nocta Hot Step Orange", 
+        "price": 109.99, 
+        "image": "nocta.png",
+        "description": "Confort moderne et style épuré. La Nike Muse offre une expérience de port exceptionnelle pour le quotidien.",
+        "category": "Lifestyle",
+        "colors": ["Blanc/Gris", "Noir/Blanc", "Rose/Blanc"],
+        "sizes": ["36", "37", "38", "39", "40", "41", "42", "43", "44"]
     }
 ]
 
@@ -40,10 +50,23 @@ class ProductService:
         self.s3_service = s3_service
     
     def get_all_products(self):
-        """Récupérer tous les produits avec URLs S3"""
-        products_with_urls = []
-        for product in PRODUCTS:
-            product_copy = product.copy()
-            product_copy['image_url'] = self.s3_service.get_image_url(product['image'])
-            products_with_urls.append(product_copy)
-        return products_with_urls
+        """Récupérer tous les produits avec URLs S3, seulement ceux qui ont une image dans le bucket"""
+        try:
+            # Récupérer la liste des images disponibles dans le bucket S3
+            available_images = self.s3_service.list_images()
+            available_image_names = {img['name'] for img in available_images}
+            
+            products_with_urls = []
+            for product in PRODUCTS:
+                # Vérifier si l'image du produit existe dans le bucket
+                if product['image'] in available_image_names:
+                    product_copy = product.copy()
+                    product_copy['image_url'] = self.s3_service.get_image_url(product['image'])
+                    products_with_urls.append(product_copy)
+            
+            return products_with_urls
+            
+        except Exception as e:
+            # En cas d'erreur S3, retourner une liste vide plutôt que de planter
+            print(f"Erreur lors de la récupération des images S3: {e}")
+            return []
