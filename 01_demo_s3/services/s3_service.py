@@ -16,7 +16,9 @@ class S3Service:
         try:
             return boto3.client(
                 's3',
-                region_name=self.config.region_name
+                region_name=self.config.region_name,
+                aws_access_key_id=self.config.aws_access_key_id,
+                aws_secret_access_key=self.config.aws_secret_access_key
             )
         except NoCredentialsError:
             logger.error("Credentials AWS non trouvées")

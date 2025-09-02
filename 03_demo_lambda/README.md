@@ -1,10 +1,10 @@
 # ⚡ Demo Lambda - Traitement automatique d'images
 
-**Suite de la demo_s3** - Cette fonction Lambda complète l'application Nike Store en ajoutant un traitement automatique des images uploadées.
+**Suite de la 01_demo_s3** - Cette fonction Lambda complète l'application Nike Store en ajoutant un traitement automatique des images uploadées.
 
-## 🔗 Lien avec demo_s3
+## 🔗 Lien avec 01_demo_s3
 
-Cette démo étend l'application Flask Nike Store (`demo_s3`) en ajoutant une couche de traitement automatique :
+Cette démo étend l'application Flask Nike Store (`01_demo_s3`) en ajoutant une couche de traitement automatique :
 
 - L'utilisateur upload une image via l'interface web Nike Store
 - La fonction Lambda se déclenche automatiquement
@@ -12,7 +12,7 @@ Cette démo étend l'application Flask Nike Store (`demo_s3`) en ajoutant une co
 
 ## 📋 Prérequis
 
-- Application `demo_s3` déployée et fonctionnelle
+- Application `01_demo_s3` déployée et fonctionnelle
 - Bucket S3 configuré (ex: `e-commerce-bucket-acc-efrei`)
 - Compte AWS avec accès à Lambda et S3
 
@@ -58,10 +58,10 @@ Cette démo étend l'application Flask Nike Store (`demo_s3`) en ajoutant une co
 
 ## 🧪 Test de la fonction
 
-### 1. Lancer l'application Nike Store (demo_s3)
+### 1. Lancer l'application Nike Store (01_demo_s3)
 
 ```bash
-cd ../demo_s3
+cd ../01_demo_s3
 python app.py
 ```
 
@@ -128,7 +128,7 @@ nom-original_YYYY-MM-DD_HHhMMmSSs.extension
 
 - Vérifiez les permissions S3 du rôle Lambda
 - Assurez-vous que le bucket existe
-- Vérifiez que le nom du bucket correspond à celui de demo_s3
+- Vérifiez que le nom du bucket correspond à celui de 01_demo_s3
 
 ### Pas de dossier `analyse/` créé
 

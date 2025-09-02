@@ -36,7 +36,7 @@ chmod 400 "$KEY_FILE"
 
 # Créer le package de l'application
 echo "📦 Création du package de l'application..."
-cd ../demo_s3
+cd ../01_demo_s3
 
 # Nettoyer les fichiers temporaires
 echo "🧹 Nettoyage des fichiers temporaires..."
@@ -46,9 +46,9 @@ find . -name ".pytest_cache" -type d -exec rm -rf {} + 2>/dev/null || true
 
 # Créer l'archive TAR
 echo "📁 Création de l'archive..."
-tar --exclude="*.git*" --exclude="node_modules/*" --exclude="*.log" --exclude="*.tmp" --exclude="__pycache__" --exclude="*.pyc" -czf ../demo_ec2/demo-s3-app.tar.gz .
+tar --exclude="*.git*" --exclude="node_modules/*" --exclude="*.log" --exclude="*.tmp" --exclude="__pycache__" --exclude="*.pyc" -czf ../02_demo_ec2/demo-s3-app.tar.gz .
 
-cd ../demo_ec2
+cd ../02_demo_ec2
 
 echo "✅ Package créé: demo-s3-app.tar.gz ($(du -h demo-s3-app.tar.gz | cut -f1))"
 echo ""
@@ -71,9 +71,9 @@ else
     echo "❌ Impossible de se connecter via SSH"
     echo "💡 Vérifiez:"
     echo "   - L'instance est démarrée"
-    echo "   - Le port 22 est ouvert dans le groupe de sécurité"
     echo "   - L'IP publique est correcte"
     echo "   - Le fichier de clé est correct"
+    echo "   - Le port 22 est ouvert dans le groupe de sécurité"
     exit 1
 fi
 echo ""
@@ -100,7 +100,7 @@ echo "⏰ Uptime de l'instance:"
 ssh_exec "uptime"
 echo ""
 
-# Installer les dépendances si nécessaire
+# Installer les dépendances
 echo "🔧 Installation des dépendances..."
 ssh_exec "
 # Détecter le système d'exploitation
@@ -161,9 +161,6 @@ python3 -c 'import flask, boto3, dotenv; print(\"✅ Toutes les dépendances son
 
 echo ''
 echo '🎯 Démarrage de l application en arrière-plan...'
-# Tuer les anciens processus s'ils existent
-pkill -f 'python3 app.py' || true
-sleep 2
 
 # Vérifier que nous sommes dans le bon répertoire
 pwd

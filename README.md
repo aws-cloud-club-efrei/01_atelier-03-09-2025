@@ -48,10 +48,10 @@ atelier-aws-cloud-club-efrei/
 │   │   ├── __init__.py
 │   │   └── validators.py              # Validation des données
 │   └── 📖 README.md                   # Documentation de l'application
-├── 📁 02_demo_lambda/                 # Traitement automatique serverless
+├── 📁 02_03_demo_lambda/                 # Traitement automatique serverless
 │   ├── ⚡ lambda_function.py          # Fonction Lambda de traitement
 │   └── 📖 README.md                   # Guide Lambda + intégration S3
-└── 📁 03_demo_ec2/                    # Scripts de déploiement EC2
+└── 📁 03_02_demo_ec2/                    # Scripts de déploiement EC2
     ├── 🔧 01-create-ec2.sh            # Création d'instance
     ├── 📦 02-deploy-app.sh            # Déploiement automatisé
     ├── 🛠️ 03-manage-instance.sh       # Gestion de l'application
@@ -64,7 +64,7 @@ Ce projet contient trois démonstrations pratiques d'utilisation des services AW
 
 ## 📁 Structure du projet
 
-### 🛍️ `demo_s3/` - Application Nike Store avec S3
+### 🛍️ `01_demo_s3/` - Application Nike Store avec S3
 
 Application web Flask complète simulant un site e-commerce Nike avec intégration S3 pour la gestion des images.
 
@@ -77,7 +77,7 @@ Application web Flask complète simulant un site e-commerce Nike avec intégrati
 
 **Technologies :** Python Flask, AWS S3, HTML/CSS/JavaScript, Boto3
 
-### ⚡ `demo_lambda/` - Traitement automatique d'images
+### ⚡ `03_demo_lambda/` - Traitement automatique d'images
 
 Fonction Lambda serverless qui complète l'application Nike Store en ajoutant un traitement automatique des images uploadées.
 
@@ -91,7 +91,7 @@ Fonction Lambda serverless qui complète l'application Nike Store en ajoutant un
 
 **Technologies :** Python, AWS Lambda, CloudWatch
 
-### �️ `demo_ec2/` - Déploiement EC2 automatisé
+### �️ `02_demo_ec2/` - Déploiement EC2 automatisé
 
 Scripts Bash pour déployer automatiquement l'application Nike Store sur une instance EC2.
 
@@ -140,16 +140,16 @@ Scripts Bash pour déployer automatiquement l'application Nike Store sur une ins
 ### 1. Demo S3 - Application Nike Store
 
 ```bash
-cd demo_s3
+cd 01_demo_s3
 pip install -r requirements.txt
 python app.py
 # Ouvrir http://127.0.0.1:3000
 ```
 
-### 2. Demo Lambda - Traitement automatique (Suite de demo_s3)
+### 2. Demo Lambda - Traitement automatique (Suite de 01_demo_s3)
 
 ```bash
-cd demo_lambda
+cd 03_demo_lambda
 # 1. Créer la fonction Lambda via AWS Console
 # 2. Nom : e-commerce-lambda-function-acc-efrei
 # 3. Copier-coller le code de lambda_function.py
@@ -160,7 +160,7 @@ cd demo_lambda
 ### 3. Demo EC2 - Déploiement production
 
 ```bash
-cd demo_ec2
+cd 02_demo_ec2
 chmod +x *.sh
 ./01-create-ec2.sh
 ./02-deploy-app.sh
@@ -198,15 +198,15 @@ e-commerce-bucket-acc-efrei/
 
 Chaque démonstration contient sa propre documentation :
 
-- `demo_s3/README.md` - Guide complet de l'application Nike Store
-- `demo_lambda/README.md` - Configuration Lambda et test avec demo_s3
-- `demo_ec2/README.md` - Scripts de déploiement EC2
+- `01_demo_s3/README.md` - Guide complet de l'application Nike Store
+- `03_demo_lambda/README.md` - Configuration Lambda et test avec 01_demo_s3
+- `02_demo_ec2/README.md` - Scripts de déploiement EC2
 
 ## 🧪 Tests et validation
 
 ### Workflow de test complet
 
-1. **Lancer l'application Nike Store** (demo_s3)
+1. **Lancer l'application Nike Store** (01_demo_s3)
 2. **Uploader une image** via l'interface web
 3. **Vérifier le déclenchement Lambda** dans CloudWatch
 4. **Contrôler la création** du dossier `analyse/` dans S3
