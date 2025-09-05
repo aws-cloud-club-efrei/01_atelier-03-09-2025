@@ -150,6 +150,8 @@ echo '⚙️ Configuration de l environnement...'
 cat > /opt/demo-s3/.env << 'ENV_EOF'
 AWS_REGION=eu-west-3
 S3_BUCKET_NAME=e-commerce-bucket-acc-efrei
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 ENV_EOF
 
 echo '✅ Fichier .env créé'

@@ -1,0 +1,7 @@
+# Configuration de l'instance EC2 - Demo S3
+PUBLIC_IP=13.38.216.139
+KEY_FILE=ec2-e-commerce-key.pem
+SSH_USER=ec2-user
+INSTANCE_ID=i-0b39b778d3c590c74
+REGION=eu-west-3
+CONFIGURED_DATE="Wed, Sep  3, 2025  7:37:23 PM"
